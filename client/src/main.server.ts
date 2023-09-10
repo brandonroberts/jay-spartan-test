@@ -12,12 +12,18 @@ if (import.meta.env.PROD) {
 
 const bootstrap = () => bootstrapApplication(AppComponent, config);
 
-export default async function render(url: string, document: string, ...args: any[]) {
+export default async function render(
+  url: string,
+  document: string,
+  ...args: any[]
+) {
   console.log(url, document);
   console.log(args);
   const html = await renderApplication(bootstrap, {
     document,
-    url,
+    url: `https://f7be326d.jay-spartan-test.pages.dev${
+      url === '/' ? '/index.html' : url
+    }`,
   });
   return html;
 }
