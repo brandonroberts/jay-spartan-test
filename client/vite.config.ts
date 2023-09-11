@@ -36,20 +36,6 @@ export default defineConfig(({ mode }) => ({
         return;
       },
     },
-    {
-      name: 'global',
-      transform(code, id) {
-        if (code.includes('global') && id.includes('platform-server.mjs')) {
-          return {
-            code: code
-              .replaceAll('global.', 'globalThis.')
-              .replaceAll('global,', 'globalThis,')
-              .replaceAll(' global[', ' globalThis['),
-          };
-        }
-        return;
-      },
-    },
   ],
   test: {
     globals: true,
@@ -58,6 +44,7 @@ export default defineConfig(({ mode }) => ({
     include: ['**/*.spec.ts'],
   },
   define: {
+    global: 'globalThis',
     'import.meta.vitest': mode !== 'production',
     'process.versions.node': `'node'`,
     'process.versions.v8': `'v8'`,
