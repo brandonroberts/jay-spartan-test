@@ -21,7 +21,7 @@ export default async function render(
   // console.log(url, document);
   // console.log(args);
   // const baseHref = `https:/jay-spartan-test.pages.dev`;
-  const baseHref = `http://localhost:8888`;
+  const baseHref = process.env['CF_PAGES_URL'] ?? `http://localhost:8888`;
   const html = await renderApplication(bootstrap, {
     document,
     url: `${baseHref}${url}`,
