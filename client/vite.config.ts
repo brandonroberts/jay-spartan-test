@@ -25,17 +25,6 @@ export default defineConfig(({ mode }) => ({
         },
       },
     }),
-    {
-      name: 'test',
-      transform(code, id) {
-        if (code.includes('os.type()')) {
-          return {
-            code: code.replace('os.type()', `''`).replace('os.arch()', `''`),
-          };
-        }
-        return;
-      },
-    },
   ],
   test: {
     globals: true,
@@ -48,5 +37,7 @@ export default defineConfig(({ mode }) => ({
     'import.meta.vitest': mode !== 'production',
     'process.versions.node': `'node'`,
     'process.versions.v8': `'v8'`,
+    'os.type()': `''`,
+    'os.arch()': `''`,
   },
 }));
