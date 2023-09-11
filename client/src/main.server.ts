@@ -20,12 +20,12 @@ export default async function render(
 ) {
   // console.log(url, document);
   // console.log(args);
+  // const baseHref = `https:/jay-spartan-test.pages.dev`;
+  const baseHref = `http://localhost:8888`;
   const html = await renderApplication(bootstrap, {
     document,
-    url: `https:/jay-spartan-test.pages.dev${url}`,
-    platformProviders: [
-      { provide: APP_BASE_HREF, useValue: 'https:/jay-spartan-test.pages.dev' },
-    ],
+    url: `${baseHref}${url}`,
+    platformProviders: [{ provide: APP_BASE_HREF, useValue: baseHref }],
   });
   return html;
 }
