@@ -5,6 +5,7 @@ import { bootstrapApplication } from '@angular/platform-browser';
 
 import { AppComponent } from './app/app.component';
 import { config } from './app/app.config.server';
+import { APP_BASE_HREF } from '@angular/common';
 
 if (import.meta.env.PROD) {
   enableProdMode();
@@ -17,13 +18,14 @@ export default async function render(
   document: string,
   ...args: any[]
 ) {
-  console.log(url, document);
-  console.log(args);
+  // console.log(url, document);
+  // console.log(args);
   const html = await renderApplication(bootstrap, {
     document,
-    url: `https://f7be326d.jay-spartan-test.pages.dev${
-      url === '/' ? '/index.html' : url
-    }`,
+    url: `https:/jay-spartan-test.pages.dev${url}`,
+    platformProviders: [
+      { provide: APP_BASE_HREF, useValue: 'https:/jay-spartan-test.pages.dev' },
+    ],
   });
   return html;
 }

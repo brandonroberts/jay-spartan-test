@@ -16,7 +16,15 @@ export default defineConfig(({ mode }) => ({
     mainFields: ['module'],
   },
   plugins: [
-    analog(),
+    analog({
+      nitro: {
+        logLevel: 3,
+        output: {
+          dir: '../dist/client/analog/public',
+          serverDir: '../dist/client/analog/public',
+        },
+      },
+    }),
     {
       name: 'test',
       transform(code, id) {
