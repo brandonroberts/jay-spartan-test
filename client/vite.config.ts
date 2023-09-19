@@ -10,12 +10,16 @@ export default defineConfig(({ mode }) => ({
     target: ['es2020'],
   },
   resolve: {
+    alias: {
+      'zone.js/node': 'zone.js/bundles/zone-node.umd.js',
+    },
     mainFields: ['module'],
   },
   plugins: [
     analog({
       nitro: {
         logLevel: 3,
+        moduleSideEffects: ['zone.js/bundles/zone-node.umd.js'],
         output: {
           dir: '../dist/client/analog/public',
           serverDir: '../dist/client/analog/public',
