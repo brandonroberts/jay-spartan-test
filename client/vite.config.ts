@@ -10,9 +10,6 @@ export default defineConfig(({ mode }) => ({
     target: ['es2020'],
   },
   resolve: {
-    alias: {
-      'zone.js/node': 'zone.js/bundles/zone-node.umd.js',
-    },
     mainFields: ['module'],
   },
   plugins: [
@@ -26,6 +23,19 @@ export default defineConfig(({ mode }) => ({
         },
       },
     }),
+    {
+      name: 'zone-ssr',
+      apply: 'build',
+      config() {
+        return {
+          resolve: {
+            alias: {
+              'zone.js/node': 'zone.js/bundles/zone-node.umd.js',
+            },
+          },
+        };
+      },
+    },
   ],
   test: {
     globals: true,
@@ -35,5 +45,6 @@ export default defineConfig(({ mode }) => ({
   },
   define: {
     'import.meta.vitest': mode !== 'production',
+    global: 'globalThis',
   },
 }));
