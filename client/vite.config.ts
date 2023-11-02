@@ -20,9 +20,6 @@ export default defineConfig(({ mode }) => ({
           dir: '../dist/client/analog/public',
           serverDir: '../dist/client/analog/public',
         },
-        runtimeConfig: {
-          DATABASE_URL: process.env['DATABASE_URL'],
-        },
       },
     }),
   ],
