@@ -20,9 +20,6 @@ export default defineConfig(({ mode }) => ({
           dir: '../dist/client/analog/public',
           serverDir: '../dist/client/analog/public',
         },
-        runtimeConfig: {
-          NITRO_DATABASE_URL: '',
-        },
       },
     }),
   ],
